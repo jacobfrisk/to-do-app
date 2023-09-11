@@ -11,15 +11,18 @@ submit.addEventListener("click", () => {
   toDo.push(assign);
 
   displayList();
+  console.log(toDo);
 });
 
-console.log(toDo);
-
 function displayList(assignments = toDo) {
-  // clear the list
-  document.querySelector("#list tbody").innerHTML = "";
+  const tbody = document.querySelector("#list tbody");
 
-  // build a new list
+  // Clear the tbody only if there are items to display
+  if (tbody.children.length > 0) {
+    tbody.innerHTML = "";
+  }
+
+  // Build a new list
   assignments.forEach(displayAssignment);
 }
 
