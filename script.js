@@ -1,12 +1,16 @@
-// Funktion der opretter opgave
-const toDo = [];
+// Funktion der opretter opgave i et tomt array.
+let toDo = [];
 const submit = document.querySelector("button");
 const input = document.querySelector("input");
+const randomNum = Math.floor(Math.random() * 100) + 1;
 
 submit.addEventListener("click", () => {
   console.log("her er vi");
   const assign = {
+    // Strengen der skrives ud er det samme som det input der laves
     desc: input.value,
+    // Et tilfældigt ID tilføjes med Math.random
+    id: Math.floor(Math.random() * 5000) + 1,
   };
 
   toDo.push(assign);
@@ -17,10 +21,14 @@ submit.addEventListener("click", () => {
 console.log(toDo);
 
 function displayList(assignments = toDo) {
-  // clear the list
-  document.querySelector("#list tbody").innerHTML = "";
+  const tbody = document.querySelector("#list tbody");
 
-  // build a new list
+  // Clear the tbody only if there are items to display
+  if (tbody.children.length > 0) {
+    tbody.innerHTML = "";
+  }
+
+  // Build a new list
   assignments.forEach(displayAssignment);
 }
 
@@ -30,7 +38,8 @@ function displayAssignment(string) {
   const clone = document.querySelector("template#toDos").content.cloneNode(true);
 
   // set clone data
-  clone.querySelector("[data-field=toDo]").textContent = string.desc;
+  clone.querySelector("[data-field=toDo]").textContent = `Description: ${string.desc}`;
+  clone.querySelector("[data-field=id]").textContent = `ID: ${string.id}`;
 
   // append clone to list
   document.querySelector("#list tbody").appendChild(clone);
