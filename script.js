@@ -1,10 +1,11 @@
 // Funktion der opretter opgave i et tomt array.
 let toDo = [];
-const submit = document.querySelector("button");
+const submit = document.querySelector("#submit");
 const input = document.querySelector("input");
 const randomNum = Math.floor(Math.random() * 100) + 1;
 
-submit.addEventListener("click", () => {
+submit.addEventListener("click", "keypress", (e) => {
+  e.key === "Enter";
   console.log("her er vi");
   const assign = {
     // Strengen der skrives ud er det samme som det input der laves
@@ -33,13 +34,21 @@ function displayList(assignments = toDo) {
 }
 
 function displayAssignment(string) {
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Adding 1 to the month because it is zero-based
+  const day = String(currentDate.getDate()).padStart(2, "0");
+
+  const formattedDate = `${year}-${month}-${day}`;
+
   // create clone
 
   const clone = document.querySelector("template#toDos").content.cloneNode(true);
 
   // set clone data
   clone.querySelector("[data-field=toDo]").textContent = `Description: ${string.desc}`;
-  clone.querySelector("[data-field=id]").textContent = `ID: ${string.id}`;
+  clone.querySelector(".toDoObject").setAttribute("data-field", string.id);
+  clone.querySelector("[data-field=datePicker]").setAttribute("value", formattedDate);
 
   // append clone to list
   document.querySelector("#list tbody").appendChild(clone);

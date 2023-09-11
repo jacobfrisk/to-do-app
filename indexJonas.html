@@ -10,7 +10,7 @@
   <body>
     <h2>Skriv din opgave</h2>
     <input type="text" id="" />
-    <button id="submit">submit</button>
+    <input type="submit" id="submit" value="submit"></input>
 
     <table id="list">
       <thead>
@@ -26,6 +26,8 @@
     <template id="toDos">
       <tr data-field="" class="toDoObject">
         <td data-field="toDo">To Do</td>
+        <input data-field="datePicker" type="date" value="" />
+        <td data-field="toDoDate" id="tester"></td>
       </tr>
     </template>
   </body>
