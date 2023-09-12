@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="scriptJacob.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Jacob</title>
+  </head>
+  <body>
+    <h2>Skriv din opgave</h2>
+    <input type="text" id="" />
+    <input type="submit" id="submit" value="submit" />
+
+    <div class="container">
+      <div class="to-do-list-container">
+        <h2>Opgaver</h2>
+        <ul id="to-do-list">
+          <!-- Opgave template vil bliver kopieret her -->
+        </ul>
+      </div>
+      <div class="done-list-container">
+        <h2>Færdig</h2>
+        <ul id="done-list"></ul>
+      </div>
+      <div class="important-list-container">
+        <h2>Vigtig</h2>
+        <ul id="important-list"></ul>
+      </div>
+    </div>
+
+    <template id="toDos">
+      <li class="to-do-object" data-field="">
+        <p class="task"></p>
+        <input class="date-input" type="date" name="" id="" value="" />
+        <p class="due-date"></p>
+        <button id="done-button" aria-pressed="false">Done</button>
+      </li>
+    </template>
+  </body>
+</html>
