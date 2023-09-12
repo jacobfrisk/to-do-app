@@ -31,7 +31,7 @@ function displayList(assignments = toDo) {
   assignments.forEach(displayAssignment);
 }
 
-function displayAssignment(string) {
+function displayAssignment(string, i) {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Adding 1 to the month because it is zero-based
@@ -50,13 +50,23 @@ function displayAssignment(string) {
 
   // append clone to list
   document.querySelector("#list tbody").appendChild(clone);
-
-  document.querySelector("[data-field=datePicker]").addEventListener("change", () => {
-    console.log("det virker");
+  document.querySelectorAll("[data-field=datePicker]")[i].addEventListener("change", (e) => {
+    console.log("det virker", e.target.parentElement);
+    // console.log("det virker", e.currentTarget);
     let toDoDate = document.querySelector("[data-field=datePicker]").value;
     console.log(toDoDate);
     string.dueDate = toDoDate;
+    string.testSjov = "HALLO";
     document.querySelector("[data-field=toDoDate]").textContent = `Due date: ${string.dueDate}`;
     console.log(string);
   });
+  //   document.querySelector("[data-field=datePicker]").addEventListener("change", () => {
+  //     console.log("det virker");
+  //     let toDoDate = document.querySelector("[data-field=datePicker]").value;
+  //     console.log(toDoDate);
+  //     string.dueDate = toDoDate;
+  //     string.testSjov = "HALLO";
+  //     document.querySelector("[data-field=toDoDate]").textContent = `Due date: ${string.dueDate}`;
+  //     console.log(string);
+  //   });
 }
